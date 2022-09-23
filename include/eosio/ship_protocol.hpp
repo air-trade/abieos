@@ -848,20 +848,20 @@ namespace eosio {
       }
    }
    
-   // wasm_configv0
+   // wasm_config_v0
    template <typename S>
    void to_bin(const ship_protocol::wasm_config_v0& obj, S& stream) {
-      return to_bin(obj.recurse, stream);
+      return to_bin(obj, stream);
    }
 
    template <typename S>
    void from_bin(ship_protocol::wasm_config_v0& obj, S& stream) {
-      return from_bin(obj.recurse, stream);
+      return from_bin(obj, stream);
    }
 
    template <typename S>
    void to_json(const ship_protocol::wasm_config_v0& obj, S& stream) {
-      return to_json(obj.recurse, stream);
+      return to_json(obj, stream);
    }
 
    template <typename S>
