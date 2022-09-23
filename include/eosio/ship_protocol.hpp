@@ -813,6 +813,7 @@ namespace eosio {
       status = (ship_protocol::transaction_status)v;
    }
 
+   // recurse_transaction_trace
    template <typename S>
    void to_bin(const ship_protocol::recurse_transaction_trace& obj, S& stream) {
       return to_bin(obj.recurse, stream);
@@ -836,9 +837,44 @@ namespace eosio {
          stream.write("null", 4);
       }
    }
-
+   
    template <typename S>
    void from_json(std::vector<ship_protocol::recurse_transaction_trace>& result, S& stream) {
+      if(stream.get_null_pred()) {
+         result.clear();
+      } else {
+         result.emplace_back();
+         from_json(result[0], stream);
+      }
+   }
+   
+   // wasm_configv0
+   template <typename S>
+   void to_bin(const ship_protocol::wasm_config_v0& obj, S& stream) {
+      return to_bin(obj.recurse, stream);
+   }
+
+   template <typename S>
+   void from_bin(ship_protocol::wasm_config_v0& obj, S& stream) {
+      return from_bin(obj.recurse, stream);
+   }
+
+   template <typename S>
+   void to_json(const ship_protocol::wasm_config_v0& obj, S& stream) {
+      return to_json(obj.recurse, stream);
+   }
+
+   template <typename S>
+   void to_json(const std::vector<ship_protocol::wasm_config_v0>& obj, S& stream) {
+      if (!obj.empty()) {
+         to_json(obj[0], stream);
+      } else {
+         stream.write("null", 4);
+      }
+   }
+
+   template <typename S>
+   void from_json(std::vector<ship_protocol::wasm_config_v0>& result, S& stream) {
       if(stream.get_null_pred()) {
          result.clear();
       } else {
