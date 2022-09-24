@@ -138,6 +138,7 @@ namespace eosio { namespace ship_protocol {
    };
 
    EOSIO_REFLECT(get_blocks_result_v0, base get_blocks_result_base, block, traces, deltas)
+   using result = std::variant<get_status_result_v0, get_blocks_result_v0>;
 
    struct row_v0 {
       bool                present = {};     // false (not present), true (present, old / new)
